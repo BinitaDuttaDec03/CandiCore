@@ -27,7 +27,8 @@ app.get("/", (req, res) => {
 })
 
 app.use("/api/auth", proxy(process.env.AUTH_SERVICE_URL))
-app.use("/api/me", isAuth, getCurrentUser)
+
+app.get("/api/me", isAuth, getCurrentUser)
 
 app.listen(PORT, () => {
     console.log(`Gateway is running on port ${PORT}`)
