@@ -5,6 +5,9 @@ import proxy from "express-http-proxy"
 import morgan from "morgan"
 import cookieParser from "cookie-parser"
 
+import { isAuth } from "./middlewares/isAuth.middleware.js"
+import { getCurrentUser } from "./controllers/user.controller.js"
+
 dotenv.config()
 
 const app = express()
@@ -24,6 +27,7 @@ app.get("/", (req, res) => {
 })
 
 app.use("/api/auth", proxy(process.env.AUTH_SERVICE_URL))
+app.use("/api/me", isAuth, getCurrentUser)
 
 app.listen(PORT, () => {
     console.log(`Gateway is running on port ${PORT}`)
