@@ -1,6 +1,6 @@
-const Dashboard = () => {
+const Dashboard = ({ user, setUser }) => {
     return (
-        <div>Dashboard</div>
+        <div>{user.email}</div>
     )
 }
 

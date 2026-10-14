@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, Navigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 
 import Home from "./pages/Home"
@@ -31,8 +31,8 @@ const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/" element={user ? <Navigate to={"/dashboard"} replace /> : <Home setUser={setUser} />} />
+        <Route path="/dashboard" element={user ? <Dashboard user={user} setUser={setUser} /> : <Navigate to={"/"} replace />} />
       </Routes>
     </>
   )
