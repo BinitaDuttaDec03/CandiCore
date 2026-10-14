@@ -180,7 +180,7 @@ function Home({ setUser }) {
                     <span className='font-bold text-xs text-[#0A0A0A]/70'>CandiCore</span>
                 </div>
                 <div className='text-black/50 text-xs'>
-                    © {new Date().getFullYear()} Fresher.AI · All rights reserved
+                    © {new Date().getFullYear()} CandiCore · All rights reserved
                 </div>
 
             </footer>
