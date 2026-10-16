@@ -47,9 +47,9 @@ function Sidebar({
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.15 }}
                             className='font-extrabold text-sm tracking-tight text-[#0A0A0A] whitespace-nowrap'>CandiCore</motion.span>
-
                     </div>
                 )}
+
                 <div className='flex items-center '>
                     <motion.button
                         whileHover={{ scale: 1.1 }}
@@ -57,7 +57,6 @@ function Sidebar({
                         onClick={() => setSidebarOpen(!sidebarOpen)}
                         className='cursor-pointer hidden md:flex text-black/30 hover:text-[#0A0A0A] transition-colors shrink-0'>
                         <FiSidebar size={15} />
-
                     </motion.button>
 
                     <motion.button
@@ -66,12 +65,9 @@ function Sidebar({
                         onClick={() => setMobileOpen(!mobileOpen)}
                         className='cursor-pointer md:hidden  text-black/30 hover:text-[#0A0A0A] transition-colors shrink-0'>
                         <FiSidebar size={15} />
-
                     </motion.button>
                 </div>
-
             </div>
-
 
             <div className='px-2.5 pt-3 pb-1.5 shrink-0'>
                 <motion.button
@@ -94,6 +90,7 @@ function Sidebar({
                     </AnimatePresence>
                 </motion.button>
             </div>
+
             <AnimatePresence>
                 {sidebarOpen &&
                     <motion.p
@@ -103,7 +100,6 @@ function Sidebar({
                         transition={{ duration: 0.13 }}
                         className='px-3 pt-2.5 pb-1 text-[10px] font-semibold uppercase tracking-widest text-black/30'>
                         Agents
-
                     </motion.p>}
             </AnimatePresence>
 
@@ -123,16 +119,11 @@ function Sidebar({
                         {sidebarOpen &&
                             <span className='whitespace-nowrap'>{nav.label}
                             </span>}
-
-
-
                     </motion.button>
                 ))}
-
             </nav>
 
             {/* coins */}
-
             <div className='border-t border-black/8 p-2.5 shrink-0'>
                 <AnimatePresence>
                     {sidebarOpen &&
@@ -155,8 +146,6 @@ function Sidebar({
                             <div className='flex items-center justify-center'>
                                 <FaCirclePlus size={16} className='text-white/70 transition-transform duration-200 group-hover:scale-110' />
                             </div>
-
-
                         </motion.div>}
                 </AnimatePresence>
 
@@ -164,13 +153,11 @@ function Sidebar({
                     <div className='w-7 h-7 rounded-full bg-[#000000] flex items-center justify-center shrink-0'>
                         <span className='text-white font-bold text-[10px]'>
                             {avatar}
-
                         </span>
                     </div>
 
                     <AnimatePresence>
                         {sidebarOpen && (
-
                             <motion.div initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
@@ -182,16 +169,11 @@ function Sidebar({
                                     {user?.email ?? "user@email.com"}
                                 </p>
                             </motion.div>
-
-
-
-
                         )}
                     </AnimatePresence>
 
                     <AnimatePresence>
                         {sidebarOpen && (
-
                             <motion.button
                                 onClick={onLogout}
                                 initial={{ opacity: 0 }}
@@ -205,17 +187,14 @@ function Sidebar({
                     </AnimatePresence>
                 </div>
             </div>
-
-
-
         </div>
     )
+
     return (
         <>
             <motion.aside
                 animate={{ width: sidebarOpen ? 260 : 72 }}
                 transition={{ duration: 0.25, ease: "easeInOut" }}
-
                 className='hidden md:flex fixed top-0 left-0 h-screen bg-white border-r border-black/8 flex-col z-40 overflow-hidden'>
                 {inner}
             </motion.aside>
@@ -231,7 +210,6 @@ function Sidebar({
                 )}
             </AnimatePresence>
 
-
             <AnimatePresence>
                 {mobileOpen && (
                     <motion.aside
@@ -244,8 +222,6 @@ function Sidebar({
                     </motion.aside>
                 )}
             </AnimatePresence>
-
-
         </>
     )
 }
