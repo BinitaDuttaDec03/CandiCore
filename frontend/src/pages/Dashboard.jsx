@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import api from '../utils/axios'
 import { motion } from "motion/react"
 import { FiSidebar } from 'react-icons/fi'
 import { useEffect } from 'react'
 
-import api from '../utils/axios'
 import Sidebar from '../components/Sidebar'
+// import { getAllInterviews } from '../apis/interview.api'
+// import Statbox from '../components/Statbox'
+// import InterviewGraph from '../components/InterviewGraph'
 
 function Dashboard({ user, setUser }) {
     const [sidebarOpen, setSidebarOpen] = useState(true)
@@ -20,10 +23,10 @@ function Dashboard({ user, setUser }) {
     const [hrData, setHrData] = useState([]);
     const [technicalCount, setTechnicalCount] = useState(0);
     const [hrCount, setHrCount] = useState(0);
-
     const navigate = useNavigate()
 
     useEffect(() => {
+
         const fetchInterviews = async () => {
             // const response = await getAllInterviews()
             // setStats(response.stats)
@@ -63,7 +66,6 @@ function Dashboard({ user, setUser }) {
 
             <motion.main className={`flex-1 min-h-screen px-3 sm:px-4 md:px-6 py-4 md:py-6 transition-all duration-300 ${sidebarOpen ? "md:ml-[260px]" : "md:ml-[72px]"
                 }`}>
-
                 {/* top Area */}
                 <div className='flex items-center justify-between mb-5 md:mb-6'>
                     <div className='flex items-center gap-2.5'>
@@ -81,7 +83,6 @@ function Dashboard({ user, setUser }) {
                             transition={{ duration: 0.4 }}
                         >
                             <p className='text-black/40 text-[11px] md:text-xs font-medium mb-0.5'>Overview</p>
-
                             <h2 className='text-lg md:text-xl font-bold text-[#0A0A0A]'>Hello, {user?.name?.split(" ")[0]} 👋 </h2>
                         </motion.div>
                     </div>
@@ -128,10 +129,8 @@ function Dashboard({ user, setUser }) {
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.4, delay: 0.3 }}
                     className="mb-3 md:mb-4">
-
                     <p className='text-black/40 text-[10px] font-semibold uppercase tracking-widest mt-2.5 mb-1'>
                         Performance</p>
-
                     <h3 className='text-[#0A0A0A] font-bold text-sm md:text-base mb-3 md:mb-4'>Interview History</h3>
                 </motion.div>
 

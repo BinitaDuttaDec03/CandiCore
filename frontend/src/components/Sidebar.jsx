@@ -28,11 +28,10 @@ function Sidebar({
     onLogout,
     sidebarOpen,
     setSidebarOpen,
-    mobileOpen,
-    setMobileOpen
+    moblieOpen,
+    setMoblieOpen
 }) {
     const navigate = useNavigate()
-
     const avatar = user?.name ? user.name.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2) : "U"
 
     const inner = (
@@ -46,7 +45,7 @@ function Sidebar({
                             initial={{ opacity: 0, x: -6 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.15 }}
-                            className='font-extrabold text-sm tracking-tight text-[#0A0A0A] whitespace-nowrap'>CandiCore</motion.span>
+                            className='font-extrabold text-sm tracking-tight text-[#0A0A0A] whitespace-nowrap'>FresherAI</motion.span>
                     </div>
                 )}
 
@@ -62,7 +61,7 @@ function Sidebar({
                     <motion.button
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
-                        onClick={() => setMobileOpen(!mobileOpen)}
+                        onClick={() => setMoblieOpen(!moblieOpen)}
                         className='cursor-pointer md:hidden  text-black/30 hover:text-[#0A0A0A] transition-colors shrink-0'>
                         <FiSidebar size={15} />
                     </motion.button>
@@ -108,7 +107,7 @@ function Sidebar({
                     <motion.button key={i}
                         onClick={() => {
                             navigate(nav.path);
-                            setMobileOpen(false)
+                            setMoblieOpen(false)
                         }}
                         whileHover={{ x: sidebarOpen ? 3 : 0 }}
                         transition={{ duration: 0.13 }}
@@ -124,6 +123,7 @@ function Sidebar({
             </nav>
 
             {/* coins */}
+
             <div className='border-t border-black/8 p-2.5 shrink-0'>
                 <AnimatePresence>
                     {sidebarOpen &&
@@ -174,6 +174,7 @@ function Sidebar({
 
                     <AnimatePresence>
                         {sidebarOpen && (
+
                             <motion.button
                                 onClick={onLogout}
                                 initial={{ opacity: 0 }}
@@ -200,18 +201,19 @@ function Sidebar({
             </motion.aside>
 
             <AnimatePresence>
-                {mobileOpen && (
+                {moblieOpen && (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        onClick={() => setMobileOpen(false)}
+                        onClick={() => setMoblieOpen(false)}
                         className='fixed inset-0 bg-black/30 z-40 md:hidden backdrop-blur-sm' />
                 )}
             </AnimatePresence>
 
+
             <AnimatePresence>
-                {mobileOpen && (
+                {moblieOpen && (
                     <motion.aside
                         initial={{ x: -280 }}
                         animate={{ x: 0 }}
