@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser"
 
 import { isAuth } from "./middlewares/isAuth.middleware.js"
 import { getCurrentUser } from "./controllers/user.controller.js"
+import { proxyWithHeaders } from "./utils/proxyWithHeaders.util.js"
 
 dotenv.config()
 
@@ -27,7 +28,7 @@ app.get("/", (req, res) => {
 })
 
 app.use("/api/auth", proxy(process.env.AUTH_SERVICE_URL))
-app.use("/api/resume", proxy(process.env.RESUME_SERVICE_URL))
+app.use("/api/resume", isAuth, proxyWithHeaders(process.env.RESUME_SERVICE_URL))
 
 app.get("/api/me", isAuth, getCurrentUser)
 
