@@ -2,6 +2,7 @@ import express from "express"
 import dotenv from "dotenv"
 
 import connectDB from "./configs/db.config.js"
+import resumeRoutes from "./routes/resume.route.js"
 
 dotenv.config()
 
@@ -14,6 +15,8 @@ const PORT = process.env.PORT || 6002
 app.get("/", (req, res) => {
     res.send("👋 Hello from resume service!")
 })
+
+app.use("/", resumeRoutes)
 
 app.listen(PORT, () => {
     console.log(`Resume service is running on port ${PORT}`)
