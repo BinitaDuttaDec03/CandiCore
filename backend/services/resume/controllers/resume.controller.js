@@ -64,3 +64,41 @@ export const uploadResume = async (req, res) => {
         })
     }
 }
+
+export const getResume = async (req, res) => {
+    try {
+        const userId = req.headers["x-user-id"]
+
+        const cache = await redis.get(`resume:${userId}`)
+        if (cache) {
+            return res.status(200).json({
+                success: true,
+                source: "redis",
+                data: JSON.parse(cache)
+            })
+        }
+
+        const resume = await Resume.findOne({ userId })
+        if (!resume) {
+            return res.status(404).json({
+                success: false,
+                message: "Resume not found"
+            })
+        }
+
+        await redis.set(`resume:${userId}`, JSON.stringify(resume))
+
+        return res.status(200).json({
+            success: true,
+            source: "mongoDb",
+            data: resume
+        })
+    } catch (error) {
+        console.log(error)
+
+        return res.status(500).json({
+            success: false,
+            message: error.message
+        })
+    }
+}
