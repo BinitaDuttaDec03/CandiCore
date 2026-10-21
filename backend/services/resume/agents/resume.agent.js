@@ -34,6 +34,9 @@ IMPORTANT RULES:
 4. Do not add extra text.
 5. Every field must exist.
 
+Use objects for education, projects, and experience entries. Use strings for all
+entries in skills, strengths, weaknesses, missingSkills, and recommendations.
+
 Response Format:
 
 {
@@ -42,9 +45,9 @@ Response Format:
   "phone":"",
   "summary":"",
   "skills":[],
-  "projects":[],
-  "education":[],
-  "experience":[],
+  "projects":[{"name":"","description":"","techStack":[]}],
+  "education":[{"institution":"","degree":"","cgpa":"","duration":""}],
+  "experience":[{"company":"","role":"","location":"","duration":"","responsibilities":[]}],
   "strengths":[],
   "weaknesses":[],
   "missingSkills":[],

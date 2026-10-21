@@ -39,7 +39,7 @@ const resumeSchema = new mongoose.Schema({
   },
 
   education: {
-    type: [String],
+    type: [mongoose.Schema.Types.Mixed],
     default: [],
   },
 
@@ -49,12 +49,12 @@ const resumeSchema = new mongoose.Schema({
   },
 
   projects: {
-    type: [String],
+    type: [mongoose.Schema.Types.Mixed],
     default: [],
   },
 
   experience: {
-    type: [String],
+    type: [mongoose.Schema.Types.Mixed],
     default: [],
   },
 

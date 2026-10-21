@@ -32,7 +32,7 @@ export const uploadResume = async (req, res) => {
         if (resume) {
             Object.assign(resume, {
                 ...resumeData,
-                extractText: resumeText
+                extractedText: resumeText
             })
             await resume.save()
         } else {
@@ -44,7 +44,7 @@ export const uploadResume = async (req, res) => {
         }
 
         await redis.set(`resume:${userId}`, JSON.stringify(resume))
-        await fs.unlink(file.path)
+        await fs.unlinkSync(file.path)
 
         return res.status(200).json({
             success: true,
@@ -55,7 +55,7 @@ export const uploadResume = async (req, res) => {
         console.log(error)
 
         if (file) {
-            await fs.unlink(file.path)
+            await fs.unlinkSync(file.path)
         }
 
         return res.status(500).json({

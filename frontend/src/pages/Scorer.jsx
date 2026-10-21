@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { motion } from "motion/react"
 import { useState } from 'react'
 import { FiAlertCircle, FiTrendingUp, FiUploadCloud, FiUser, FiZap } from 'react-icons/fi'
+import api from '../utils/axios'
 // import { useDispatch, useSelector } from 'react-redux'
 // import { PolarAngleAxis, RadialBar, RadialBarChart } from "recharts"
 
@@ -81,38 +82,27 @@ function Scorer({ user, setUser }) {
     // const dispatch = useDispatch()
     // const { resume } = useSelector((state) => state.resume)
 
-    // const uploadResume = async () => {
-    //     if (!file) {
-    //         alert("Please select a PDF")
-    //     }
+    const uploadResume = async () => {
+        if (!file) {
+            alert("Please select a PDF")
+        }
 
-    //     try {
-    //         setLoading(true)
+        try {
+            setLoading(true)
 
-    //         try {
-    //             const coinResponse = await useCoins({ coins: 10, action: "resume-scorer" })
-    //             setUser((prev) => ({
-    //                 ...prev, interviewCoin: coinResponse?.interviewCoin,
-    //             }))
-    //         } catch (error) {
-    //             setLoading(false)
-    //             alert("Failed to use coins.")
-    //             return;
-    //         }
+            const formData = new FormData()
+            formData.append("resume", file)
 
-    //         const formData = new FormData()
-    //         formData.append("resume", file)
+            const res = await api.post("/api/resume/upload", formData)
+            console.log(res.data)
 
-    //         const response = await api.post("/api/resume/upload", formData)
-
-    //         dispatch(setResume(response?.data?.data))
-    //         setLoading(false)
-    //     } catch (error) {
-    //         console.log(error)
-    //         alert("Upload failed")
-    //         setLoading(false)
-    //     }
-    // }
+            setLoading(false)
+        } catch (error) {
+            console.log(error)
+            alert("Upload failed")
+            setLoading(false)
+        }
+    }
 
     // scorer section
 
@@ -277,7 +267,7 @@ function Scorer({ user, setUser }) {
                     <motion.button
                         whileHover={{ scale: 1.07 }}
                         whileTap={{ scale: 0.97 }}
-                        // onClick={uploadResume}
+                        onClick={uploadResume}
                         disabled={!file || loading} className='relative mt-4 w-full h-10 rounded-xl font-semibold text-xs bg-white text-[#0A0A0A] shadow-[0_4px_14px_rgba(255,255,255,0.15)] hover:bg-white/90 disabled:opacity-40 disabled:cursor-not-allowed transition-all'>
                         {loading ? "Analyzing..." : "Analyze Resume"}
                     </motion.button>
