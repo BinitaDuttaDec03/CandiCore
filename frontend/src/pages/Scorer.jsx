@@ -1,10 +1,12 @@
 import { useNavigate } from 'react-router-dom'
 import { motion } from "motion/react"
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { FiAlertCircle, FiTrendingUp, FiUploadCloud, FiUser, FiZap } from 'react-icons/fi'
-import api from '../utils/axios'
-// import { useDispatch, useSelector } from 'react-redux'
 // import { PolarAngleAxis, RadialBar, RadialBarChart } from "recharts"
+
+import api from '../utils/axios'
+import { setResume } from '../redux/resumeSlice'
 
 // import api from '../utils/axios'
 // import { setResume } from '../redux/resumeSlice'
@@ -79,8 +81,8 @@ function Scorer({ user, setUser }) {
     const [file, setFile] = useState(null)
     const [loading, setLoading] = useState(false)
 
-    // const dispatch = useDispatch()
-    // const { resume } = useSelector((state) => state.resume)
+    const dispatch = useDispatch()
+    const { resume } = useSelector(state => state.resume)
 
     const uploadResume = async () => {
         if (!file) {
@@ -95,6 +97,8 @@ function Scorer({ user, setUser }) {
 
             const res = await api.post("/api/resume/upload", formData)
             console.log(res.data)
+
+            dispatch(setResume(res?.data?.data))
 
             setLoading(false)
         } catch (error) {
@@ -234,7 +238,7 @@ function Scorer({ user, setUser }) {
                     className='relative w-full max-w-sm rounded-3xl overflow-hidden bg-[#000000]/90 backdrop-blur-2xl border border-white/10 p-4 shadow-[0_8px_32px_rgba(0,0,0,0.25)] sm:p-6'>
                     <div className='absolute inset-0 bg-gradient-to-br from-white/[0.08] via-transparent to-transparent pointer-events-none' />
 
-                    <p className='relative text-[10px] text-white/40 tracking-widest uppercase mb-1.5'>Step 1 t0 2 </p>
+                    <p className='relative text-[10px] text-white/40 tracking-widest uppercase mb-1.5'>Step 1 to 2</p>
 
                     <div className='relative w-full h-1 bg-white/10 rounded-full mb-4'>
                         <div className='h-1 bg-white rounded-full w-1/2' /></div>
