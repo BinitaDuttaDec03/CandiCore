@@ -8,6 +8,7 @@ import { getCurrentUser } from "./apis/user"
 import Scorer from "./pages/Scorer"
 import { getResume } from "./apis/resume"
 import { setResume } from "./redux/resumeSlice"
+import ResumeBuilder from "./pages/ResumeBuilder"
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -49,6 +50,7 @@ const App = () => {
         <Route path="/" element={user ? <Navigate to={"/dashboard"} replace /> : <Home setUser={setUser} />} />
         <Route path="/dashboard" element={user ? <Dashboard user={user} setUser={setUser} /> : <Navigate to={"/"} replace />} />
         <Route path="/scorer" element={user ? <Scorer user={user} setUser={setUser} /> : <Navigate to={"/"} replace />} />
+        <Route path="/resume" element={user ? <ResumeBuilder user={user} setUser={setUser} /> : <Navigate to={"/"} replace />} />
       </Routes>
     </>
   )
