@@ -124,7 +124,6 @@ function ResumeForm({ step, data, setData }) {
 
         return (
             <div className='flex flex-col gap-3'>
-
                 {data.experience.length === 0 && (
                     <p className='text-xs text-black/40 text-center py-3'>
                         No experience added yet. Click below to add.

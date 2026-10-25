@@ -1,191 +1,314 @@
-import { motion } from "motion/react"
+import { motion } from "motion/react";
 import { GiArtificialHive } from "react-icons/gi";
 import { FaArrowRight } from "react-icons/fa6";
-import { useState } from 'react';
-import { FiMic, FiFileText, FiBarChart2, FiMap } from "react-icons/fi";
+import { useState } from "react";
+import {
+    FiMic,
+    FiFileText,
+    FiBarChart2,
+    FiMap,
+    FiTarget,
+    FiCheckCircle,
+    FiArrowUpRight,
+} from "react-icons/fi";
 
-import dashboard from "../assets/image.png"
-import LoginModel from '../components/LoginModel';
+import dashboard from "../assets/image.png";
+import LoginModel from "../components/LoginModel";
+
+const highlights = [
+    {
+        icon: <FiFileText />,
+        number: "01",
+        title: "Make your experience count",
+        description:
+            "Turn your experience into a clearer, more compelling professional story with resume insights and guided editing.",
+        tag: "RESUME",
+    },
+    {
+        icon: <FiMic />,
+        number: "02",
+        title: "Practise with purpose",
+        description:
+            "Build confidence for the conversations ahead with structured interview practice and room to improve.",
+        tag: "INTERVIEW PRACTICE",
+    },
+    {
+        icon: <FiBarChart2 />,
+        number: "03",
+        title: "Know what to improve",
+        description:
+            "Use focused feedback to spot strengths, uncover gaps, and decide where your effort matters most.",
+        tag: "FEEDBACK",
+    },
+    {
+        icon: <FiMap />,
+        number: "04",
+        title: "Give your goals a route",
+        description:
+            "Work toward your target role with a more deliberate plan for learning and professional growth.",
+        tag: "LEARNING PATH",
+    },
+];
 
 function Home({ setUser }) {
-    const [showLogin, setShowLogin] = useState(false)
+    const [showLogin, setShowLogin] = useState(false);
+
+    const openLogin = () => setShowLogin(true);
+
     return (
-        <div className='bg-white text-[#0A0A0A] font-sans min-h-screen overflow-x-hidden'>
-
-            {/* navbar */}
-
+        <div className="min-h-screen overflow-x-hidden bg-[#f8f8f7] font-sans text-[#101010] selection:bg-black selection:text-white">
+            {/* Navigation */}
             <motion.nav
-                initial={{ y: -60, opacity: 0 }}
+                initial={{ y: -24, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className='fixed top-0 left-0 right-0 z-50 h-[52px] flex items-center justify-between px-5 bg-white/70 backdrop-blur-xl border-b border-black/5'>
-
-                <div className='flex items-center gap-2'>
-                    <div className='w-7 h-7 rounded-lg bg-[#0A0A0A] flex items-center justify-center shadow-[0_4px_14px_rgba(0,0,0,0.18)]'>
-                        <GiArtificialHive size={15} color='white' /></div>
-                    <span className='font-extrabold text-base tracking-tight text-[#0A0A0A]'>CandiCore</span>
-                </div>
+                transition={{ duration: 0.45, ease: "easeOut" }}
+                className="fixed inset-x-0 top-0 z-50 flex h-[68px] items-center justify-between border-b border-black/[0.06] bg-[#f8f8f7]/85 px-5 backdrop-blur-xl md:px-10"
+            >
+                <a href="#" className="flex items-center gap-2.5" aria-label="CandiCore home">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#101010] text-white shadow-[0_5px_18px_rgba(0,0,0,0.14)]">
+                        <GiArtificialHive size={19} />
+                    </span>
+                    <span className="text-lg font-extrabold tracking-[-0.06em] md:text-xl">
+                        CandiCore
+                    </span>
+                </a>
 
                 <motion.button
-                    onClick={() => setShowLogin(true)}
-                    whileHover={{ scale: 1.04 }}
+                    type="button"
+                    onClick={openLogin}
+                    whileHover={{ y: -1, scale: 1.02 }}
                     whileTap={{ scale: 0.97 }}
-                    className='bg-[#0A0A0A]/80 backdrop-blur-2xl text-white font-semibold border border-white/10 rounded-md px-3 py-1.5 text-xs cursor-pointer transition-all hover:border-white/20 shadow-[0_8px_24px_rgba(0,0,0,0.25)] flex items-center gap-2'>
-                    Log In <FaArrowRight />
+                    className="inline-flex items-center gap-2 rounded-xl bg-[#171717] px-4 py-2.5 text-sm font-semibold text-white shadow-[0_8px_24px_rgba(0,0,0,0.14)] transition hover:bg-black md:px-5"
+                >
+                    Log in <FaArrowRight size={12} />
                 </motion.button>
             </motion.nav>
 
-            {/* main area */}
-            <section className='relative pt-20 pb-14 overflow-hidden bg-[#F8F9FA]'>
-                <div className='absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-black/[0.04] blur-[90px] pointer-events-none' />
+            <main>
+                {/* Hero */}
+                <section className="relative isolate overflow-hidden px-5 pb-16 pt-32 md:pb-24 md:pt-40">
+                    <div
+                        aria-hidden="true"
+                        className="pointer-events-none absolute left-1/2 top-20 -z-10 h-[440px] w-[min(90vw,900px)] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.075),transparent_68%)] blur-2xl"
+                    />
+                    <div className="mx-auto max-w-5xl text-center">
+                        <motion.div
+                            initial={{ opacity: 0, y: 12 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.45 }}
+                            className="mb-6 inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/75 px-4 py-2 text-xs font-semibold tracking-wide text-black/65 shadow-sm md:text-sm"
+                        >
+                            <span className="h-1.5 w-1.5 rounded-full bg-black" />
+                            YOUR NEXT CHAPTER STARTS HERE
+                        </motion.div>
 
-                <div className='max-w-4xl mx-auto px-6 text-center'>
-                    <motion.div
-                        initial={{ opacity: 0, y: 16 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.05 }}
-                        className='inline-flex items-center px-3 py-1.5 rounded-full border border-black/15 bg-black/5 text-black/70 text-xs font-medium mb-4'>
-                        Multi-Agent Interview Platform
-                    </motion.div>
+                        <motion.h1
+                            initial={{ opacity: 0, y: 18 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.55, delay: 0.06 }}
+                            className="mx-auto max-w-4xl text-3xl font-extrabold leading-[1.1] tracking-[-0.055em] sm:text-4xl md:text-5xl"
+                        >
+                            Be ready for
+                            <span className="mt-2 block text-black/30">what comes next.</span>
+                        </motion.h1>
 
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.55, delay: 0.12 }}
-                        className='text-3xl md:text-5xl font-extrabold leading-[1.1] tracking-tight mb-4 text-[#0A0A0A] [text-shadow:0_4px_24px_rgba(0,0,0,0.12)]'>
-                        Job Interviews<br />
-                        <span className="text-black/30">
-                            Don't Have to Suck
-                        </span><br />
-                        Anymore!
-                    </motion.h1>
+                        <motion.p
+                            initial={{ opacity: 0, y: 16 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.15 }}
+                            className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-black/45 md:text-base md:leading-7"
+                        >
+                            Build a stronger resume, sharpen your interview skills, and turn
+                            uncertainty into a plan you can act on.
+                        </motion.p>
 
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.55, delay: 0.2 }}
-                        className='text-black/45 text-sm leading-relaxed max-w-md mx-auto mb-6 [text-shadow:0_2px_10px_rgba(0,0,0,0.06)]'>
-                        CandiCore is an innovative AI-powered interview preparation platform
-                        designed to help job seekers excel in their interviews.
-                    </motion.p>
+                        <motion.div
+                            initial={{ opacity: 0, y: 14 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.22 }}
+                            className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row"
+                        >
+                            <motion.button
+                                type="button"
+                                onClick={openLogin}
+                                whileHover={{
+                                    y: -2,
+                                    boxShadow: "0 14px 34px rgba(0,0,0,0.2)",
+                                }}
+                                whileTap={{ scale: 0.98 }}
+                                className="inline-flex min-h-12 items-center justify-center gap-3 rounded-xl bg-[#171717] px-6 py-3 text-sm font-bold text-white shadow-[0_10px_28px_rgba(0,0,0,0.16)] transition hover:bg-black"
+                            >
+                                Start your journey <FaArrowRight size={13} />
+                            </motion.button>
+                            <motion.a
+                                href="#how-it-helps"
+                                whileHover={{ y: -2, scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-black/10 bg-white/70 px-6 py-3 text-sm font-semibold text-black/70 transition hover:border-black/25 hover:bg-white"
+                            >
+                                Explore CandiCore <FiArrowUpRight size={16} />
+                            </motion.a>
+                        </motion.div>
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.55, delay: 0.28 }}>
-                        <motion.button
-                            onClick={() => setShowLogin(true)}
-                            whileHover={{ scale: 1.05, boxShadow: "0 0 36px rgba(0,0,0,0.18)" }}
-                            whileTap={{ scale: 0.97 }}
-                            className='relative  gap-2 overflow-hidden bg-[#0A0A0A]/80 backdrop-blur-2xl text-white font-bold px-5 py-2.5 rounded-lg text-xs cursor-pointer border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all hover:border-white/20'>
-                            <span className='flex items-center justify-center gap-2'> Get Started For Free <FaArrowRight /></span>
-                            <span className='absolute inset-0 bg-gradient-to-br from-white/[0.1] via-transparent to-transparent pointer-events-none rounded-lg' />
-                        </motion.button>
-                    </motion.div>
-                </div>
-
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    whileHover={{ y: -10, scale: 1.02 }}
-                    transition={{ duration: 0.7, delay: 0.3 }}
-                    className='mt-10 rounded-lg overflow-hidden  shadow-[0_0_60px_rgba(0,0,0,0.06)] max-w-2xl mx-auto'>
-
-                    <img src={dashboard} alt='dashboard img' className='w-full h-auto object-cover block ' />
-                </motion.div>
-
-            </section>
-
-            {/* Agents */}
-            <section className='py-16 bg-[#F8F9FA]'>
-                <div className='max-w-5xl mx-auto px-6'>
-                    <div className='text-center mb-10'>
-                        <div className='inline-flex items-center px-3 py-1.5 rounded-full border border-black/15 bg-black/5 text-black/70 text-xs font-medium mb-4'>
-                            AI Powered Agents
-                        </div>
-
-                        <h2 className='text-2xl md:text-4xl font-extrabold tracking-tight text-[#0A0A0A] [text-shadow:0_4px_20px_rgba(0,0,0,0.1)]'>
-                            Specialized Agents For
-                            <span className="block text-black/30">
-                                Every Interview Stage
-                            </span>
-                        </h2>
-
-                        <p className='text-black/40 text-sm max-w-2xl mx-auto mt-4 leading-relaxed'>
-                            CandiCore combines multiple AI agents that work together
-                            to help you build your resume, practice interviews,
-                            receive detailed feedback, and follow a personalized roadmap
-                            to land your dream job.
-                        </p>
+                        <motion.div
+                            initial={{ opacity: 0, y: 34, scale: 0.975 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            transition={{ duration: 0.85, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                            whileHover={{ y: -5 }}
+                            className="relative mx-auto mt-10 max-w-5xl md:mt-12"
+                        >
+                            <motion.div
+                                aria-hidden="true"
+                                animate={{ scale: [1, 1.035, 1], opacity: [0.45, 0.8, 0.45] }}
+                                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                                className="absolute -inset-3 -z-10 rounded-[28px] bg-black/[0.045] blur-xl md:-inset-5"
+                            />
+                            <div className="overflow-hidden rounded-2xl border border-black/[0.08] bg-white p-1.5 shadow-[0_24px_80px_rgba(0,0,0,0.10)] md:rounded-[22px] md:p-2">
+                                <motion.img
+                                    src={dashboard}
+                                    alt="Preview of the CandiCore career preparation dashboard"
+                                    whileHover={{ scale: 1.015 }}
+                                    transition={{ duration: 0.45, ease: "easeOut" }}
+                                    className="block h-auto w-full rounded-xl object-cover md:rounded-2xl"
+                                />
+                            </div>
+                            <div className="mx-auto mt-4 flex max-w-fit items-center gap-2 rounded-full border border-black/[0.07] bg-white/80 px-3.5 py-2 text-xs text-black/50 shadow-sm">
+                                <FiCheckCircle size={14} />
+                                One workspace for your next career move
+                            </div>
+                        </motion.div>
                     </div>
-                    <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-4'>
-                        {
-                            [
-                                {
-                                    icon: <FiFileText />,
-                                    title: "Resume Agent",
-                                    desc: "Create ATS-friendly resumes, improve profile strength and maximize interview opportunities.",
-                                },
-                                {
-                                    icon: <FiMic />,
-                                    title: "Interview Agent",
-                                    desc: "Conduct realistic HR, Technical and Coding interviews with AI-powered simulations.",
-                                },
-                                {
-                                    icon: <FiBarChart2 />,
-                                    title: "Feedback Agent",
-                                    desc: "Get detailed answer analysis, scoring reports and improvement recommendations.",
-                                },
-                                {
-                                    icon: <FiMap />,
-                                    title: "Roadmap Agent",
-                                    desc: "Generate personalized learning roadmaps based on goals, skills and performance.",
-                                },
-                            ].map((agent, i) => (
-                                <motion.div
-                                    key={i}
-                                    initial={{ opacity: 0, y: 24 }}
+                </section>
+
+                {/* Value proposition */}
+                <section id="how-it-helps" className="px-5 py-16 md:py-24">
+                    <div className="mx-auto max-w-6xl">
+                        <motion.div
+                            initial={{ opacity: 0, y: 24 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.25 }}
+                            transition={{ duration: 0.65, ease: "easeOut" }}
+                            className="mb-10 grid gap-5 md:mb-14 md:grid-cols-[1fr_0.75fr] md:items-end"
+                        >
+                            <div>
+                                <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-black/45">
+                                    A clearer way forward
+                                </p>
+                                <h2 className="max-w-2xl text-2xl font-extrabold leading-tight tracking-[-0.05em] sm:text-3xl md:text-4xl">
+                                    Preparation that moves you forward.
+                                </h2>
+                            </div>
+                            <p className="max-w-lg text-sm leading-7 text-black/55 md:justify-self-end md:text-base">
+                                Career preparation works best when you know what you bring,
+                                what needs work, and what to focus on next. CandiCore brings
+                                those pieces into one considered experience.
+                            </p>
+                        </motion.div>
+
+                        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                            {highlights.map((item, index) => (
+                                <motion.article
+                                    key={item.number}
+                                    initial={{ opacity: 0, y: 18 }}
                                     whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.45, delay: i * 0.08 }}
-                                    whileHover={{ y: -10, scale: 1.02 }}
-                                    className='group relative overflow-hidden bg-[#0A0A0A]/80 backdrop-blur-2xl border border-white/10 rounded-2xl p-5 shadow-[0_8px_32px_rgba(0,0,0,0.25)] hover:shadow-[0_16px_48px_rgba(0,0,0,0.4)] hover:border-white/20 transition-all'>
-                                    <div className='absolute inset-0 bg-gradient-to-br from-white/[0.08] via-transparent to-transparent pointer-events-none' />
-
-                                    <div className='absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500' />
-
-                                    <div className='relative'>
-                                        <div className='w-11 h-11 rounded-xl bg-white/10 backdrop-blur-md border border-white/15 flex items-center justify-center text-white text-lg mb-4 shadow-inner'>{agent.icon}</div>
-
-                                        <h2 className='text-base font-bold mb-2 text-white'>{agent.title}</h2>
-
-                                        <p className='text-white/45 text-xs leading-relaxed'>{agent.desc}</p>
+                                    viewport={{ once: true, amount: 0.15 }}
+                                    transition={{ duration: 0.4, delay: index * 0.07 }}
+                                    whileHover={{ y: -5 }}
+                                    className="group relative overflow-hidden rounded-2xl border border-black/[0.08] bg-white p-6 transition-shadow duration-300 hover:shadow-[0_16px_40px_rgba(0,0,0,0.07)]"
+                                >
+                                    <div className="mb-8 flex items-start justify-between">
+                                        <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#171717] text-lg text-white">
+                                            {item.icon}
+                                        </span>
+                                        <span className="text-xs font-semibold tracking-widest text-black/25">
+                                            {item.number}
+                                        </span>
                                     </div>
-
-                                </motion.div>
-                            ))
-                        }
+                                    <p className="mb-2 text-[10px] font-bold tracking-[0.16em] text-black/40">
+                                        {item.tag}
+                                    </p>
+                                    <h3 className="mb-3 text-lg font-bold tracking-tight">
+                                        {item.title}
+                                    </h3>
+                                    <p className="text-sm leading-6 text-black/55">
+                                        {item.description}
+                                    </p>
+                                    <div className="pointer-events-none absolute -bottom-12 -right-10 h-28 w-28 rounded-full bg-black/[0.035] blur-2xl transition-all group-hover:bg-black/[0.08]" />
+                                </motion.article>
+                            ))}
+                        </div>
                     </div>
+                </section>
+
+                {/* Closing call to action */}
+                <section className="px-5 pb-20 pt-4 md:pb-28">
+                    <motion.div
+                        initial={{ opacity: 0, y: 28 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.2 }}
+                        transition={{ duration: 0.7, ease: "easeOut" }}
+                        className="relative mx-auto max-w-6xl overflow-hidden rounded-[28px] bg-[#171717] px-6 py-12 text-center text-white sm:px-12 md:py-16"
+                    >
+                        <div
+                            aria-hidden="true"
+                            className="pointer-events-none absolute left-1/2 top-0 h-64 w-[80%] -translate-x-1/2 rounded-full bg-white/[0.08] blur-[80px]"
+                        />
+                        <div className="relative mx-auto max-w-2xl">
+                            <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/15 bg-white/[0.08]">
+                                <FiTarget size={22} />
+                            </div>
+                            <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-white/45">
+                                Your next move
+                            </p>
+                            <h2 className="text-2xl font-extrabold leading-tight tracking-[-0.05em] sm:text-3xl md:text-4xl">
+                                Less guesswork.
+                                <span className="block text-white/45">More forward momentum.</span>
+                            </h2>
+                            <p className="mx-auto mt-5 max-w-lg text-sm leading-7 text-white/60 md:text-base">
+                                Start with where you are today. Build on your strengths, work
+                                on the gaps, and prepare for the opportunities ahead.
+                            </p>
+                            <motion.button
+                                type="button"
+                                onClick={openLogin}
+                                whileHover={{ y: -2, scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="mt-8 inline-flex items-center gap-3 rounded-xl bg-white px-6 py-3.5 text-sm font-bold text-black transition hover:bg-white/90"
+                            >
+                                Get started <FaArrowRight size={13} />
+                            </motion.button>
+                        </div>
+                    </motion.div>
+                </section>
+            </main>
+
+            <footer className="border-t border-black/[0.07] bg-[#f8f8f7] px-5 py-7">
+                <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 sm:flex-row">
+                    <a href="#" className="flex items-center gap-2" aria-label="CandiCore home">
+                        <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#101010] text-white">
+                            <GiArtificialHive size={14} />
+                        </span>
+                        <span className="text-sm font-extrabold tracking-[-0.05em]">
+                            CandiCore
+                        </span>
+                    </a>
+                    <p className="text-center text-xs text-black/45">
+                        Find your direction. Build your next chapter.
+                    </p>
+                    <p className="text-xs text-black/40">
+                        © {new Date().getFullYear()} CandiCore
+                    </p>
                 </div>
-            </section>
-
-            {showLogin && <LoginModel onClose={() => setShowLogin(false)} setUser={setUser} />}
-
-            <footer className='border-t border-black/7 py-6 text-center bg-white'>
-                <div className='flex items-center justify-center gap-2 mb-1.5'>
-                    <div className='w-5 h-5 rounded-md bg-[#0A0A0A] flex items-center justify-center'>
-                        <GiArtificialHive size={11} color='white' />
-
-                    </div>
-                    <span className='font-bold text-xs text-[#0A0A0A]/70'>CandiCore</span>
-                </div>
-                <div className='text-black/50 text-xs'>
-                    © {new Date().getFullYear()} CandiCore · All rights reserved
-                </div>
-
             </footer>
+
+            {showLogin && (
+                <LoginModel
+                    onClose={() => setShowLogin(false)}
+                    setUser={setUser}
+                />
+            )}
         </div>
-    )
+    );
 }
 
-export default Home
+export default Home;
