@@ -3,9 +3,9 @@ import { motion } from "motion/react"
 import { FiArrowLeft, FiArrowRight, FiEye } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 
-// import PreviewResume from '../components/resume/PreviewResume';
 import initialData from '../components/resume/initialData';
 import ResumeForm from '../components/resume/ResumeForm';
+import PreviewResume from '../components/resume/PreviewResume';
 
 const STEPS = [
     { step: 1, title: "Personal Information", subtitle: "Your basic contact details" },
@@ -39,9 +39,9 @@ function ResumeBuilder({ user, setUser }) {
 
     const isLastStep = currentStep === STEPS.length
 
-    // if (showPreview) {
-    //     return <PreviewResume data={data} user={user} setUser={setUser} onBack={() => setShowPreview(false)} />
-    // }
+    if (showPreview) {
+        return <PreviewResume data={data} user={user} setUser={setUser} onBack={() => setShowPreview(false)} />
+    }
 
     return (
         <div className='min-h-screen bg-white text-[#0A0A0A] flex flex-col'>
