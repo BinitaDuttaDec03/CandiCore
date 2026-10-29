@@ -139,7 +139,7 @@ function Sidebar({
 
                                 <div className='flex flex-col'>
                                     <span className='text-[9px] uppercase tracking-wider text-white/40 font-medium'>Interview Coins</span>
-                                    <span className='text-xs font-bold text-white'>{user?.interviewCoin}</span>
+                                    <span className='text-xs font-bold text-white'>{user?.interviewCoins}</span>
                                 </div>
                             </div>
 

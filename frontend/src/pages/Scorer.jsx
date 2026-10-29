@@ -7,8 +7,7 @@ import { PolarAngleAxis, RadialBar, RadialBarChart } from "recharts"
 
 import api from '../utils/axios'
 import { setResume } from '../redux/resumeSlice'
-
-// import { useCoins } from '../apis/user.api'
+import { useCoins } from '../apis/user'
 
 const ScoreRing = ({ score }) => {
     const color = score >= 75 ? "#7c3aed" : score >= 50 ? "#f59e0b" : "#ef4444";
@@ -89,6 +88,17 @@ function Scorer({ user, setUser }) {
 
         try {
             setLoading(true)
+
+            try {
+                const coinResponse = await useCoins({ coins: 10, action: "resume-scorer" })
+                setUser((prev) => ({
+                    ...prev, interviewCoins: coinResponse?.interviewCoins,
+                }))
+            } catch (error) {
+                setLoading(false)
+                alert("Failed to use coins.")
+                return;
+            }
 
             const formData = new FormData()
             formData.append("resume", file)

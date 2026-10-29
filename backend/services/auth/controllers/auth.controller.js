@@ -104,7 +104,7 @@ export const useCoins = async (req, res) => {
             return res.status(403).json({
                 success: false,
                 message: "Not enough interview coins",
-                interviewCoin: user.interviewCoins,
+                interviewCoins: user.interviewCoins,
             });
         }
 

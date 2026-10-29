@@ -15,7 +15,7 @@ function DownloadBtn({ docRef, user, setUser }) {
 
             await handlePdf()
             // setUser((prev) => ({
-            //     ...prev, interviewCoin: coinResponse?.interviewCoin,
+            //     ...prev, interviewCoins: coinResponse?.interviewCoins,
             // }))
         } catch (error) {
             if (error.response?.status === 403) {
